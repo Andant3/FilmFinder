@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.filmfinder"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.filmfinder"
         minSdk = 33
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -63,40 +63,54 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
     // Integration with activities
-    implementation("androidx.activity:activity-compose:1.9.2")
+    implementation(libs.androidx.activity.compose.v192)
     // Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation(libs.androidx.lifecycle.lifecycle.viewmodel.compose)
     // Integration with LiveData
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation(libs.androidx.runtime.livedata)
 
-    implementation ("androidx.constraintlayout:constraintlayout-compose:1.1.0")
-    implementation ("androidx.compose.ui:ui:1.7.5")
-    implementation ("androidx.compose.material:material:1.7.5")
+    implementation (libs.androidx.constraintlayout.compose)
+    implementation (libs.ui)
+    implementation (libs.androidx.material)
 
     // Material Design 3
-    implementation("androidx.compose.material3:material3")
+    implementation(libs.material3)
 
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
 
     // Lifecycle
-    val lifecycle_version = "2.8.7"
-
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     // ViewModel utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation(libs.androidx.lifecycle.lifecycle.viewmodel.compose)
     // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     // Lifecycle utilities for Compose
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version")
+    implementation(libs.androidx.lifecycle.runtime.compose)
     // Saved state module for ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     // Annotation processor
-    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+    kapt(libs.androidx.lifecycle.compiler)
 
     // Navigation
-    val nav_version = "2.8.4"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation(libs.androidx.navigation.compose)
+
+    // Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.gson)
+    implementation(libs.retrofit2.converter.gson)
+
+
+    // ROOM
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }
