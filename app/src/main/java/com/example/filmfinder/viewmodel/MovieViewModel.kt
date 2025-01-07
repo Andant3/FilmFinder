@@ -1,6 +1,5 @@
 package com.example.filmfinder.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,7 +9,7 @@ import com.example.filmfinder.repository.Repository
 import com.example.filmfinder.retrofit.Movie
 import kotlinx.coroutines.launch
 
-class MoviesViewModel(repository: Repository) : ViewModel() {
+class MovieViewModel(repository: Repository) : ViewModel() {
 
     var movies by mutableStateOf<List<Movie>>(emptyList())
         private set
