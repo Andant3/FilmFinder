@@ -10,7 +10,7 @@ class MovieViewModelFactory(private val repository: Repository): ViewModelProvid
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
         if(modelClass.isAssignableFrom(ViewModel::class.java)){
-            return MoviesViewModel(repository) as T
+            return MovieViewModel(repository) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class")
