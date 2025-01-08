@@ -106,6 +106,7 @@ dependencies {
     // ROOM
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)

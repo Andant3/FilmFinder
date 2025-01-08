@@ -17,13 +17,20 @@ class MovieViewModel(repository: Repository) : ViewModel() {
     var moviesFromApi by mutableStateOf<List<Movie>>(emptyList())
         private set
 
+    var moviesFromDB by mutableStateOf<List<Movie>>(emptyList())
+        private set
+
     init {
         viewModelScope.launch {
             try {
                 moviesFromApi = repository.getPopularMoviesFromApi("0a4f5f7d3524e846f975929cbf419d43")
+
+                repository.insertMoviesIntoDB(moviesFromApi)
+
                 movies = moviesFromApi
             } catch (e: Exception) {
-                TODO("Fetch the data from ROOM DB")
+                moviesFromDB = repository.getMoviesFromDB()
+                movies = moviesFromDB
             }
         }
     }

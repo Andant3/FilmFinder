@@ -32,21 +32,21 @@ fun MovieItem(movie: Movie) {
                 model = "https://image.tmdb.org/t/p/w500${movie.posterPath}",
                 contentDescription = "Movie Image"
             )
-        }
 
-        Spacer(Modifier.width(8.dp))
+            Spacer(Modifier.width(8.dp))
 
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(
-                text = movie.title,
-                style = MaterialTheme.typography.labelLarge
-            )
-            Text(
-                text = movie.overview,
-                style = MaterialTheme.typography.bodySmall
-            )
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = movie.title,
+                    style = MaterialTheme.typography.labelLarge
+                )
+                Text(
+                    text = movie.overview,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 }
