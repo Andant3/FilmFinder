@@ -6,10 +6,12 @@ import com.google.gson.annotations.SerializedName
 
 @Entity("movies_table")
 data class Movie(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val title: String,
     val overview: String,
     @SerializedName("poster_path")
-    val posterPath: String
+    val posterPath: String,
+    @SerializedName("vote_average")
+    val rating: Double? = 0.0
 )
