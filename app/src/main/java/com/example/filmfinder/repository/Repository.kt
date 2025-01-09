@@ -18,8 +18,8 @@ class Repository(context: Context) {
         return movieDAO.getAllMoviesFromDB()
     }
 
-    suspend fun insertMovieIntoDB(movie: Movie){
-        movieDAO.insertMovie(movie)
+    suspend fun clearDB(){
+        movieDAO.clearDB()
     }
 
     suspend fun insertMoviesIntoDB(movies: List<Movie>){

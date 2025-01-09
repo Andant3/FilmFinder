@@ -35,218 +35,51 @@ fun RatingComposable(rating: Double, modifier: Modifier) {
             Modifier.padding(start = 5.dp)
         ) {
             Row {
-                Image(
-                    painter = when {
-                        rating >= 0.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 0.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 1.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 1.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 2.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 2.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 3.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 3.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 4.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 4.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
+                StarImage(rating, 1)
+                StarImage(rating, 2)
+                StarImage(rating, 3)
+                StarImage(rating, 4)
+                StarImage(rating, 5)
             }
             Row {
-                Image(
-                    painter = when {
-                        rating >= 5.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 5.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 6.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 6.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 7.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 7.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 8.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 8.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
-                Image(
-                    painter = when {
-                        rating >= 9.8 -> {
-                            painterResource(R.drawable.star_full)
-                        }
-
-                        rating >= 9.3 -> {
-                            painterResource(R.drawable.star_half)
-                        }
-
-                        else -> {
-                            painterResource(R.drawable.star_empty)
-                        }
-                    },
-                    contentDescription = "Rating Star Image",
-                    modifier = Modifier
-                        .padding(2.dp)
-                        .size(22.dp)
-
-                )
+                StarImage(rating, 6)
+                StarImage(rating, 7)
+                StarImage(rating, 8)
+                StarImage(rating, 9)
+                StarImage(rating, 10)
             }
         }
     }
+}
+
+@Composable
+fun StarImage(rating: Double, num: Int){
+    Image(
+        painter = when {
+            rating >= num-0.2 -> {
+                painterResource(R.drawable.star_full)
+            }
+
+            rating >= num-0.7 -> {
+                painterResource(R.drawable.star_half)
+            }
+
+            else -> {
+                painterResource(R.drawable.star_empty)
+            }
+        },
+        contentDescription = "Rating Star Image",
+        modifier = Modifier
+            .padding(2.dp)
+            .size(22.dp)
+    )
 }
 
 @Preview
 @Composable
 fun RatingPreview() {
     RatingComposable(
-        6.8,
+        8.3,
         Modifier.fillMaxWidth()
     )
 }
