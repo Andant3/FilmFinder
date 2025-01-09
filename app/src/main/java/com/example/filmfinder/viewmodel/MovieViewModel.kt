@@ -1,5 +1,6 @@
 package com.example.filmfinder.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -25,12 +26,15 @@ class MovieViewModel(repository: Repository) : ViewModel() {
             try {
                 moviesFromApi = repository.getPopularMoviesFromApi("0a4f5f7d3524e846f975929cbf419d43")
 
+                repository.clearDB()
                 repository.insertMoviesIntoDB(moviesFromApi)
 
                 movies = moviesFromApi
+                Log.i("TAGY", "Movies Loaded From Api")
             } catch (e: Exception) {
                 moviesFromDB = repository.getMoviesFromDB()
                 movies = moviesFromDB
+                Log.i("TAGY", "Movies Loaded From DB")
             }
         }
     }

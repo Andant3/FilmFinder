@@ -1,5 +1,6 @@
 package com.example.filmfinder.retrofit
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -11,7 +12,12 @@ data class Movie(
     val title: String,
     val overview: String,
     @SerializedName("poster_path")
+    @ColumnInfo("poster_path")
     val posterPath: String,
     @SerializedName("vote_average")
-    val rating: Double? = 0.0
-)
+    val rating: Double? = UNDEFINED
+){
+    companion object{
+        const val UNDEFINED = -1.0
+    }
+}
