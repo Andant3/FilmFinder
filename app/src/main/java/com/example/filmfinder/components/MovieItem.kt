@@ -15,16 +15,17 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
-import com.example.filmfinder.retrofit.Movie
+import com.example.filmfinder.model.Movie
 
 @Composable
-fun MovieItem(movie: Movie) {
+fun MovieItem(movie: Movie, onClick: () -> Unit) {
 
     Card(
         modifier = Modifier
             .padding(20.dp)
             .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(8.dp)
+        elevation = CardDefaults.cardElevation(8.dp),
+        onClick = onClick
     ) {
         ConstraintLayout(
             Modifier

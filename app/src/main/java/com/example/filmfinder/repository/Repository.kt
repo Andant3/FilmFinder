@@ -1,7 +1,7 @@
 package com.example.filmfinder.repository
 
 import android.content.Context
-import com.example.filmfinder.retrofit.Movie
+import com.example.filmfinder.model.Movie
 import com.example.filmfinder.retrofit.RetrofitInstance
 import com.example.filmfinder.room.MoviesDataBase
 

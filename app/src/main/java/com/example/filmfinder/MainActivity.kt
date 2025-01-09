@@ -15,7 +15,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.filmfinder.components.MovieScreen
+import com.example.filmfinder.components.MoviesListScreen
+import com.example.filmfinder.navigation.MovieListScreenRoute
+import com.example.filmfinder.navigation.MovieScreenRoute
 import com.example.filmfinder.repository.Repository
 import com.example.filmfinder.ui.theme.FilmFinderTheme
 import com.example.filmfinder.viewmodel.MovieViewModel
@@ -37,7 +44,27 @@ class MainActivity : ComponentActivity() {
             FilmFinderTheme {
                 Column {
                     CustomHeader()
-                    MovieScreen(movieViewModel)
+
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = MovieListScreenRoute
+                    ) {
+                        composable<MovieListScreenRoute> {
+                            MoviesListScreen(movieViewModel, navController)
+                        }
+                        composable<MovieScreenRoute> {
+                            val args = it.toRoute<MovieScreenRoute>()
+                            MovieScreen(
+                                args.title,
+                                args.overview,
+                                args.posterPath,
+                                args.backdropPath
+                            )
+                        }
+                    }
+
+
                 }
             }
         }

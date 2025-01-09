@@ -1,4 +1,4 @@
-package com.example.filmfinder.retrofit
+package com.example.filmfinder.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -14,7 +14,13 @@ data class Movie(
     @SerializedName("poster_path")
     @ColumnInfo("poster_path")
     val posterPath: String,
+    @SerializedName("backdrop_path")
+    @ColumnInfo("backdrop_path")
+    val backdropPath: String,
     @SerializedName("vote_average")
     val rating: Double,
-    val popularity: Double
+    val popularity: Double,
+    @SerializedName("release_date")
+    @ColumnInfo("release_date")
+    val releaseDate: String
 )

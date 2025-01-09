@@ -1,5 +1,6 @@
 package com.example.filmfinder.retrofit
 
+import com.example.filmfinder.model.Movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(

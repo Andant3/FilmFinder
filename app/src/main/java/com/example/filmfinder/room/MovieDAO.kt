@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.filmfinder.retrofit.Movie
+import com.example.filmfinder.model.Movie
 
 @Dao
 interface MovieDAO {

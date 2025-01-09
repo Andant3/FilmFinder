@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -69,6 +70,16 @@ dependencies {
     // Integration with LiveData
     implementation(libs.androidx.runtime.livedata)
 
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Testing Navigation
+    androidTestImplementation(libs.androidx.navigation.testing)
+
+    // JSON serialization library, works with the Kotlin serialization plugin
+    implementation(libs.kotlinx.serialization.json)
+
+    // Constraint Layout
     implementation (libs.androidx.constraintlayout.compose)
     implementation (libs.ui)
     implementation (libs.androidx.material)
@@ -93,9 +104,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     // Annotation processor
     kapt(libs.androidx.lifecycle.compiler)
-
-    // Navigation
-    implementation(libs.androidx.navigation.compose)
 
     // Retrofit
     implementation (libs.retrofit)

@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.filmfinder.repository.Repository
-import com.example.filmfinder.retrofit.Movie
+import com.example.filmfinder.model.Movie
 import kotlinx.coroutines.launch
 
 class MovieViewModel(repository: Repository) : ViewModel() {
