@@ -15,9 +15,6 @@ data class Movie(
     @ColumnInfo("poster_path")
     val posterPath: String,
     @SerializedName("vote_average")
-    val rating: Double? = UNDEFINED
-){
-    companion object{
-        const val UNDEFINED = -1.0
-    }
-}
+    val rating: Double,
+    val popularity: Double
+)

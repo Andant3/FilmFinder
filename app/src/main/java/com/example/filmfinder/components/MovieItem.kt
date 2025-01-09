@@ -77,16 +77,13 @@ fun MovieItem(movie: Movie) {
                 text = if (movie.overview.length > 174) "..."
                 else ""
             )
-            movie.rating?.let {
-                RatingComposable(
-                    it,
-                    Modifier
-                        .constrainAs(rating) {
-                            bottom.linkTo(parent.bottom, margin = 12.dp)
-                            end.linkTo(parent.end, margin = 12.dp)
-                        })
-            }
-
+            RatingComposable(
+                movie.rating,
+                Modifier
+                    .constrainAs(rating) {
+                        bottom.linkTo(parent.bottom, margin = 12.dp)
+                        end.linkTo(parent.end, margin = 12.dp)
+                    })
         }
 
     }

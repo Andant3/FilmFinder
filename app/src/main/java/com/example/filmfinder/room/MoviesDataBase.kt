@@ -4,13 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.filmfinder.retrofit.Movie
 
 @Database(
     entities = [Movie::class],
-    version = 3
+    version = 1
 )
 abstract class MoviesDataBase : RoomDatabase() {
 
@@ -20,17 +18,12 @@ abstract class MoviesDataBase : RoomDatabase() {
 
         @Volatile
         private var INSTANCE: MoviesDataBase? = null
-
+/*
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE movies_table ADD COLUMN rating REAL")
+                database.execSQL("ALTER TABLE movies_table ADD COLUMN popularity REAL NOT NULL")
             }
-        }
-        private val MIGRATION_2_3 = object : Migration(2, 3) {
-            override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE movies_table RENAME COLUMN posterPath TO poster_path")
-            }
-        }
+        }*/
 
         fun getInstance(context: Context): MoviesDataBase {
             synchronized(this) {
@@ -41,7 +34,6 @@ abstract class MoviesDataBase : RoomDatabase() {
                         MoviesDataBase::class.java,
                         "movies_db"
                     )
-                        .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                         .build()
                 }
                 INSTANCE = instance
