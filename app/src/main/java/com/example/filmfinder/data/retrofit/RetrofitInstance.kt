@@ -1,4 +1,4 @@
-package com.example.filmfinder.retrofit
+package com.example.filmfinder.data.retrofit
 
 
 import retrofit2.Retrofit
