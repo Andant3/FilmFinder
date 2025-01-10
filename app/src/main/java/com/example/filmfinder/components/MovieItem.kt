@@ -1,5 +1,8 @@
 package com.example.filmfinder.components
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -8,12 +11,13 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
 import com.example.filmfinder.data.model.Movie
 
@@ -27,64 +31,44 @@ fun MovieItem(movie: Movie, onClick: () -> Unit) {
         elevation = CardDefaults.cardElevation(8.dp),
         onClick = onClick
     ) {
-        ConstraintLayout(
+        Row(
             Modifier
                 .fillMaxSize()
                 .padding(10.dp)
         ) {
 
-            val (image, title, overview, rating, dots) = createRefs()
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                AsyncImage(
+                    model = "https://image.tmdb.org/t/p/w400${movie.posterPath}",
+                    contentDescription = "Movie Image",
+                    Modifier.padding(10.dp)
+                )
 
-            AsyncImage(
-                model = "https://image.tmdb.org/t/p/w500${movie.posterPath}",
-                contentDescription = "Movie Image",
-                Modifier.constrainAs(image) {
+                RatingComposable(
+                    movie.rating
+                )
+            }
 
-                    top.linkTo(parent.top, margin = 6.dp)
-                    start.linkTo(parent.start, margin = 6.dp)
-                    bottom.linkTo(parent.bottom)
+            Column {
 
-                }
-            )
-
-            Text(
-                modifier = Modifier.constrainAs(title) {
-                    top.linkTo(image.top)
-                    start.linkTo(image.end, margin = 16.dp)
-                },
-                text = movie.title,
-                style = MaterialTheme.typography.labelLarge
-            )
-            Text(
-                modifier = Modifier.constrainAs(overview) {
-                    top.linkTo(title.bottom, margin = 6.dp)
-                    start.linkTo(title.start)
-                    end.linkTo(parent.end, margin = 6.dp)
-                    bottom.linkTo(rating.top, margin = 10.dp)
-
-                    width = Dimension.fillToConstraints
-                    height = Dimension.fillToConstraints
-                },
-                text = movie.overview,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Normal
-            )
-            Text(
-                modifier = Modifier
-                    .constrainAs(dots) {
-                        top.linkTo(overview.bottom, margin = -(8.dp))
-                        start.linkTo(overview.start)
-                    },
-                text = if (movie.overview.length > 174) "..."
-                else ""
-            )
-            RatingComposable(
-                movie.rating,
-                Modifier
-                    .constrainAs(rating) {
-                        bottom.linkTo(parent.bottom, margin = 12.dp)
-                        end.linkTo(parent.end, margin = 12.dp)
-                    })
+                Text(
+                    modifier = Modifier.padding(start = 12.dp, top = 4.dp),
+                    text = movie.title,
+                    style = MaterialTheme.typography.labelLarge
+                )
+                Text(
+                    modifier = Modifier.padding(12.dp),
+                    text = movie.overview,
+                    style = TextStyle(
+                        lineHeight = 1.5.em
+                    ),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Normal
+                )
+            }
         }
 
     }

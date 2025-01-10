@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -19,17 +18,16 @@ import androidx.compose.ui.unit.sp
 import com.example.filmfinder.R
 
 @Composable
-fun RatingComposable(rating: Double, modifier: Modifier) {
+fun RatingComposable(rating: Double) {
 
     Row(
-        modifier = modifier,
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = "$rating".substring(0, 3),
             fontWeight = FontWeight.SemiBold,
-            fontSize = 22.sp
+            fontSize = 16.sp
         )
         Column(
             Modifier.padding(start = 5.dp)
@@ -71,7 +69,7 @@ fun StarImage(rating: Double = 1.0, num: Int = 1) {
         contentDescription = "Rating Star Image",
         modifier = Modifier
             .padding(2.dp)
-            .size(22.dp)
+            .size(18.dp)
     )
 }
 
@@ -79,7 +77,6 @@ fun StarImage(rating: Double = 1.0, num: Int = 1) {
 @Composable
 fun RatingPreview() {
     RatingComposable(
-        8.3,
-        Modifier.fillMaxWidth()
+        8.3
     )
 }
