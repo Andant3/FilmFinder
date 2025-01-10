@@ -1,37 +1,44 @@
 package com.example.filmfinder.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil3.compose.AsyncImage
+import com.example.filmfinder.R
+import com.example.filmfinder.ui.viewmodel.MovieViewModel
 
 @Composable
-fun MovieScreen(
-    title: String,
-    overview: String,
-    posterPath: String,
-    backdropPath: String
-) {
+fun MovieScreen(viewModel: MovieViewModel, id: Int) {
+
+    val movie = viewModel.getMovieById(id)
 
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray)
+            .background(Color.Black)
     ) {
 
-        val (title_text, overview_text, poster, backdrop) = createRefs()
+        val (title_text, overview_text, poster, backdrop, star, rating) = createRefs()
 
         AsyncImage(
-            model = "https://image.tmdb.org/t/p/original${backdropPath}",
-            contentDescription = "Movie Image",
+            model = "https://image.tmdb.org/t/p/original${movie.backdropPath}",
+            contentDescription = "Movie Background Image",
             Modifier.constrainAs(backdrop) {
 
                 top.linkTo(parent.top)
@@ -43,7 +50,7 @@ fun MovieScreen(
         )
 
         AsyncImage(
-            model = "https://image.tmdb.org/t/p/w300${posterPath}",
+            model = "https://image.tmdb.org/t/p/w300${movie.posterPath}",
             contentDescription = "Movie Image",
             Modifier.constrainAs(poster) {
 
@@ -58,22 +65,51 @@ fun MovieScreen(
                 top.linkTo(poster.top)
                 start.linkTo(poster.end, margin = 16.dp)
             },
-            text = title,
+            text = movie.title + "(${movie.releaseDate})",
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
         )
+
         Text(
             modifier = Modifier.constrainAs(overview_text){
                 top.linkTo(backdrop.bottom, margin = 10.dp)
                 start.linkTo(parent.start, margin = 16.dp)
                 end.linkTo(parent.end, margin = 10.dp)
             },
-            text = overview,
+            text = movie.overview,
+            style = LocalTextStyle.current.merge(
+                TextStyle(
+                    lineHeight = 2.5.em,
+                    lineBreak = LineBreak.Paragraph
+                )
+            ),
             fontSize = 22.sp,
             fontWeight = FontWeight.Normal,
-            color = Color.Black
+            fontFamily = FontFamily.Serif,
+            color = Color.White
+        )
+
+        Image(
+            painter = painterResource(R.drawable.star_full),
+            contentDescription = "Rating Star",
+            modifier = Modifier.constrainAs(star){
+                end.linkTo(backdrop.end)
+                bottom.linkTo(backdrop.bottom)
+            }
+                .size(72.dp)
+        )
+
+        Text(
+            text = movie.rating.toString().substring(0, 3),
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.constrainAs(rating){
+                top.linkTo(star.top, margin = 8.dp)
+                start.linkTo(star.start)
+                end.linkTo(star.end)
+                bottom.linkTo(star.bottom)
+            }
         )
     }
-
 }

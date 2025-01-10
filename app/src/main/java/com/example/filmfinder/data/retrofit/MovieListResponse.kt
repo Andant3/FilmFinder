@@ -1,9 +1,9 @@
-package com.example.filmfinder.retrofit
+package com.example.filmfinder.data.retrofit
 
-import com.example.filmfinder.model.Movie
+import com.example.filmfinder.data.model.Movie
 import com.google.gson.annotations.SerializedName
 
-data class MovieResponse(
+data class MovieListResponse(
     val pages: Int,
     val results: List<Movie>,
     @SerializedName("total_pages")

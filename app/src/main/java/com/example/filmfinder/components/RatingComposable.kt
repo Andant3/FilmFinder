@@ -53,14 +53,14 @@ fun RatingComposable(rating: Double, modifier: Modifier) {
 }
 
 @Composable
-fun StarImage(rating: Double, num: Int){
+fun StarImage(rating: Double = 1.0, num: Int = 1) {
     Image(
         painter = when {
-            rating >= num-0.2 -> {
+            rating >= num - 0.2 -> {
                 painterResource(R.drawable.star_full)
             }
 
-            rating >= num-0.7 -> {
+            rating >= num - 0.7 -> {
                 painterResource(R.drawable.star_half)
             }
 

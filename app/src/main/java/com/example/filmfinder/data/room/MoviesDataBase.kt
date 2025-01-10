@@ -1,4 +1,4 @@
-package com.example.filmfinder.room
+package com.example.filmfinder.data.room
 
 import android.content.Context
 import androidx.room.Database
@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.filmfinder.model.Movie
+import com.example.filmfinder.data.model.Movie
 
 @Database(
     entities = [Movie::class],

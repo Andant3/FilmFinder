@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
-import com.example.filmfinder.model.Movie
+import com.example.filmfinder.data.model.Movie
 
 @Composable
 fun MovieItem(movie: Movie, onClick: () -> Unit) {
