@@ -4,6 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
 import com.example.filmfinder.R
 import com.example.filmfinder.ui.viewmodel.MovieViewModel
@@ -32,6 +35,7 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
+            .verticalScroll(rememberScrollState())
     ) {
 
         val (title_text, overview_text, poster, backdrop, star, rating) = createRefs()
@@ -63,10 +67,14 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
         Text(
             modifier = Modifier.constrainAs(title_text){
                 top.linkTo(poster.top)
-                start.linkTo(poster.end, margin = 16.dp)
+                start.linkTo(poster.end, margin = 5.dp)
+                end.linkTo(backdrop.end)
+
+                width = Dimension.wrapContent
+                height = Dimension.wrapContent
             },
-            text = movie.title + "(${movie.releaseDate})",
-            fontSize = 28.sp,
+            text = movie.title,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
         )
@@ -80,7 +88,7 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
             text = movie.overview,
             style = LocalTextStyle.current.merge(
                 TextStyle(
-                    lineHeight = 2.5.em,
+                    lineHeight = 2.em,
                     lineBreak = LineBreak.Paragraph
                 )
             ),
@@ -94,8 +102,8 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
             painter = painterResource(R.drawable.star_full),
             contentDescription = "Rating Star",
             modifier = Modifier.constrainAs(star){
-                end.linkTo(backdrop.end)
-                bottom.linkTo(backdrop.bottom)
+                end.linkTo(backdrop.end, margin = 10.dp)
+                bottom.linkTo(backdrop.bottom, margin = 10.dp)
             }
                 .size(72.dp)
         )
@@ -104,6 +112,9 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
             text = movie.rating.toString().substring(0, 3),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
+            style = TextStyle(
+                fontFamily = FontFamily.SansSerif
+            ),
             modifier = Modifier.constrainAs(rating){
                 top.linkTo(star.top, margin = 8.dp)
                 start.linkTo(star.start)
