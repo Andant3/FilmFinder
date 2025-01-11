@@ -15,8 +15,8 @@ data class Movie(
     @ColumnInfo("poster_path")
     val posterPath: String,
     @SerializedName("backdrop_path")
-    @ColumnInfo("backdrop_path")
-    val backdropPath: String,
+    @ColumnInfo("backdrop_path", defaultValue = UNDEFINED_BACKDROP_PATH)
+    val backdropPath: String?,
     @SerializedName("vote_average")
     val rating: Double,
     val popularity: Double,

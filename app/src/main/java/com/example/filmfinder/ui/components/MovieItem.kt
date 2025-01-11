@@ -1,4 +1,4 @@
-package com.example.filmfinder.components
+package com.example.filmfinder.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
