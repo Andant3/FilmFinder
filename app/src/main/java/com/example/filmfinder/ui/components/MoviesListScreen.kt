@@ -2,7 +2,7 @@ package com.example.filmfinder.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.example.filmfinder.ui.viewmodel.MovieListViewModel
+import com.example.filmfinder.ui.viewmodel_list.MovieListViewModel
 
 @Composable
 fun MoviesListScreen(viewModel: MovieListViewModel, navController: NavController) {

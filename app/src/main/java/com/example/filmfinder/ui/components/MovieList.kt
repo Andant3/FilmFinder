@@ -16,15 +16,26 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.filmfinder.data.model.Movie
 import com.example.filmfinder.navigation.MovieScreenRoute
-import com.example.filmfinder.ui.viewmodel.MovieListViewModel
-import com.example.filmfinder.ui.viewmodel.MovieListViewModelEvent
+import com.example.filmfinder.ui.viewmodel_list.MovieListViewModel
+import com.example.filmfinder.ui.viewmodel_list.MovieListViewModelEvent
 
 @Composable
 fun MovieList(movies: List<Movie>, viewModel: MovieListViewModel, navController: NavController) {
 
+    val currentOrder = viewModel.currentOrder.value
+
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        item {
+            SortDropdownMenu(
+                modifier = Modifier.fillMaxWidth(),
+                movieOrder = currentOrder.order,
+                onOrderChange = {
+                    viewModel.onEvent(MovieListViewModelEvent.Order(it))
+                }
+            )
+        }
         items(movies) { movie ->
             MovieItem(
                 movie,
