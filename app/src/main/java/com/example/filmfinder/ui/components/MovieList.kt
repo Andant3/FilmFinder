@@ -1,10 +1,13 @@
 package com.example.filmfinder.ui.components
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -47,7 +50,7 @@ fun MovieList(movies: List<Movie>, viewModel: MovieListViewModel, navController:
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
                     .fillMaxHeight(0.3f)
-                    .padding(top = 12.dp, bottom = 16.dp),
+                    .padding(top = 2.dp, bottom = 24.dp),
                 onClick = { viewModel.onEvent(MovieListViewModelEvent.LoadNextPage) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(
@@ -58,9 +61,13 @@ fun MovieList(movies: List<Movie>, viewModel: MovieListViewModel, navController:
                 )
             ) {
                 Text(
-                    text = "Load More"
+                    text = "Load More",
+                    color = Color.White
                 )
             }
+        }
+        item {
+            Spacer(Modifier.height(24.dp))
         }
     }
 }
