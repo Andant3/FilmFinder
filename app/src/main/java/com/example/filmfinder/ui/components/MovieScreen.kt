@@ -1,4 +1,4 @@
-package com.example.filmfinder.components
+package com.example.filmfinder.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -66,9 +66,9 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
 
         Text(
             modifier = Modifier.constrainAs(title_text){
-                top.linkTo(poster.top)
+                top.linkTo(parent.top, margin = 10.dp)
                 start.linkTo(poster.end, margin = 5.dp)
-                end.linkTo(backdrop.end)
+                end.linkTo(parent.end)
 
                 width = Dimension.wrapContent
                 height = Dimension.wrapContent
@@ -81,7 +81,7 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
 
         Text(
             modifier = Modifier.constrainAs(overview_text){
-                top.linkTo(backdrop.bottom, margin = 10.dp)
+                top.linkTo(backdrop.bottom, margin = 16.dp)
                 start.linkTo(parent.start, margin = 16.dp)
                 end.linkTo(parent.end, margin = 10.dp)
             },
