@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,11 +19,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.filmfinder.components.MovieScreen
-import com.example.filmfinder.components.MoviesListScreen
+import com.example.filmfinder.data.repository.Repository
 import com.example.filmfinder.navigation.MovieListScreenRoute
 import com.example.filmfinder.navigation.MovieScreenRoute
-import com.example.filmfinder.data.repository.Repository
+import com.example.filmfinder.ui.components.MovieScreen
+import com.example.filmfinder.ui.components.MoviesListScreen
 import com.example.filmfinder.ui.theme.FilmFinderTheme
 import com.example.filmfinder.ui.viewmodel.MovieListViewModel
 import com.example.filmfinder.ui.viewmodel.MovieViewModel

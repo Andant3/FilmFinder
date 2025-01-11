@@ -10,28 +10,28 @@ class Repository(context: Context) {
     private var db = MoviesDataBase.getInstance(context)
     private var dao = db.dao
 
-    suspend fun getPopularMoviesFromApi(apiKey: String): List<Movie>{
-        return RetrofitInstance.api.getPopularMovies(apiKey).results
+    suspend fun getPopularMoviesFromApi(page: Int, apiKey: String): List<Movie> {
+        return RetrofitInstance.api.getPopularMoviesOnPage(page, "popularity.desc", apiKey).results
     }
 
-    suspend fun getMoviesFromDB(): List<Movie>{
+    suspend fun getMoviesFromDB(): List<Movie> {
         return dao.getAllMoviesFromDB()
     }
 
-    suspend fun getMovieFromApiByID(id: Int, apiKey: String): Movie{
+    suspend fun getMovieFromApiByID(id: Int, apiKey: String): Movie {
         return RetrofitInstance.api.getMovieByID(id, apiKey)
     }
 
-    suspend fun getMovieFromDBByID(id: Int): Movie{
+    suspend fun getMovieFromDBByID(id: Int): Movie {
         return dao.getMovieByID(id)
     }
 
 
-    suspend fun clearDB(){
+    suspend fun clearDB() {
         dao.clearDB()
     }
 
-    suspend fun insertMoviesIntoDB(movies: List<Movie>){
+    suspend fun insertMoviesIntoDB(movies: List<Movie>) {
         dao.insertMoviesList(movies)
     }
 
