@@ -25,9 +25,9 @@ import com.example.filmfinder.navigation.MovieScreenRoute
 import com.example.filmfinder.ui.components.MovieScreen
 import com.example.filmfinder.ui.components.MoviesListScreen
 import com.example.filmfinder.ui.theme.FilmFinderTheme
-import com.example.filmfinder.ui.viewmodel.MovieListViewModel
-import com.example.filmfinder.ui.viewmodel.MovieViewModel
-import com.example.filmfinder.ui.viewmodel.MovieViewModelFactory
+import com.example.filmfinder.ui.viewmodel_list.MovieListViewModel
+import com.example.filmfinder.ui.viewmodel_movie.MovieViewModel
+import com.example.filmfinder.ui.viewmodel_list.MovieViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

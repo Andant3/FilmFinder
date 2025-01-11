@@ -2,6 +2,7 @@ package com.example.filmfinder.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -24,7 +25,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import coil3.compose.AsyncImage
 import com.example.filmfinder.R
-import com.example.filmfinder.ui.viewmodel.MovieViewModel
+import com.example.filmfinder.ui.viewmodel_movie.MovieViewModel
 
 @Composable
 fun MovieScreen(viewModel: MovieViewModel, id: Int) {
@@ -64,20 +65,25 @@ fun MovieScreen(viewModel: MovieViewModel, id: Int) {
             }
         )
 
-        Text(
+        Column(
             modifier = Modifier.constrainAs(title_text){
                 top.linkTo(parent.top, margin = 10.dp)
                 start.linkTo(poster.end, margin = 5.dp)
                 end.linkTo(parent.end)
+                bottom.linkTo(star.top)
 
-                width = Dimension.wrapContent
-                height = Dimension.wrapContent
-            },
-            text = movie.title,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
+                width = Dimension.fillToConstraints
+                height = Dimension.fillToConstraints
+            }
+        ) {
+            Text(
+                text = movie.title,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
 
         Text(
             modifier = Modifier.constrainAs(overview_text){

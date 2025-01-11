@@ -4,18 +4,27 @@ import android.content.Context
 import com.example.filmfinder.data.model.Movie
 import com.example.filmfinder.data.retrofit.RetrofitInstance
 import com.example.filmfinder.data.room.MoviesDataBase
+import com.example.filmfinder.ui.viewmodel_list.MovieOrder
 
 class Repository(context: Context) {
 
     private var db = MoviesDataBase.getInstance(context)
     private var dao = db.dao
 
-    suspend fun getPopularMoviesFromApi(page: Int, apiKey: String): List<Movie> {
-        return RetrofitInstance.api.getPopularMoviesOnPage(page, "popularity.desc", apiKey).results
+    suspend fun getMoviesFromApi(page: Int, sortBy: String, apiKey: String): List<Movie> {
+        return RetrofitInstance.api.getSortedMoviesFromPage(page, sortBy, apiKey).results
     }
 
-    suspend fun getMoviesFromDB(): List<Movie> {
-        return dao.getAllMoviesFromDB()
+    suspend fun getMoviesFromDB(orderType: MovieOrder): List<Movie> {
+        return when(orderType){
+            MovieOrder.Popularity -> {
+                dao.getMoviesByPopularityFromDB()
+            }
+
+            MovieOrder.Rating -> {
+                dao.getMoviesByRatingFromDB()
+            }
+        }
     }
 
     suspend fun getMovieFromApiByID(id: Int, apiKey: String): Movie {

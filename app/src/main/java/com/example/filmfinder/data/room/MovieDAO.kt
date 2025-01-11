@@ -2,6 +2,7 @@ package com.example.filmfinder.data.room
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.filmfinder.data.model.Movie
 
@@ -11,7 +12,7 @@ interface MovieDAO {
     @Insert
     suspend fun insertMovie(movie: Movie)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMoviesList(movies: List<Movie>)
 
     @Query("SELECT * FROM movies_table WHERE id = :id")
@@ -21,5 +22,8 @@ interface MovieDAO {
     suspend fun clearDB()
 
     @Query("SELECT * FROM movies_table ORDER BY popularity DESC")
-    suspend fun getAllMoviesFromDB(): List<Movie>
+    suspend fun getMoviesByPopularityFromDB(): List<Movie>
+
+    @Query("SELECT * FROM movies_table ORDER BY rating DESC")
+    suspend fun getMoviesByRatingFromDB(): List<Movie>
 }

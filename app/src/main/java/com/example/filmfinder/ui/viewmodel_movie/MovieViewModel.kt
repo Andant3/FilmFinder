@@ -1,4 +1,4 @@
-package com.example.filmfinder.ui.viewmodel
+package com.example.filmfinder.ui.viewmodel_movie
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface ServiceTMDB {
 
     @GET("discover/movie")
-    suspend fun getPopularMoviesOnPage(
+    suspend fun getSortedMoviesFromPage(
         @Query("page")
         page: Int,
         @Query("sort_by")
