@@ -13,6 +13,8 @@ interface ServiceTMDB {
         page: Int,
         @Query("sort_by")
         sortBy: String,
+        @Query("vote_count.gte")
+        voteCount: Int = 100,
         @Query("api_key")
         apiKey: String
     ): MovieListResponse
