@@ -12,7 +12,7 @@ class Repository(context: Context) {
     private var dao = db.dao
 
     suspend fun getMoviesFromApi(page: Int, sortBy: String, apiKey: String): List<Movie> {
-        return RetrofitInstance.api.getSortedMoviesFromPage(page, sortBy, apiKey).results
+        return RetrofitInstance.api.getSortedMoviesFromPage(page, sortBy, 100, apiKey).results
     }
 
     suspend fun getMoviesFromDB(orderType: MovieOrder): List<Movie> {
